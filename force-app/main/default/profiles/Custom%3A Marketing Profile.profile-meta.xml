@@ -84,6 +84,10 @@
     <layoutAssignments>
         <layout>Anken__c-案件レイアウト</layout>
     </layoutAssignments>
+    <tabVisibilities>
+        <tab>anken</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
