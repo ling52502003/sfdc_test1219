@@ -45,11 +45,6 @@
                 <default>false</default>
                 <label>群馬県</label>
             </value>
-            <value>
-                <fullName>広島県</fullName>
-                <default>false</default>
-                <label>広島県</label>
-            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
