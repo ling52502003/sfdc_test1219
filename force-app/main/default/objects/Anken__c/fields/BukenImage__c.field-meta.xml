@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BukenImage__c</fullName>
+    <externalId>false</externalId>
+    <formula>IMAGE(&quot;/servlet/servlet.FileDownload?file=0157F00000175SF&quot;,  &quot;Flower&quot;, 300, 300)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>物件画像</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
