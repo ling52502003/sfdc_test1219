@@ -1,0 +1,30 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 12-20-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   12-20-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<aura:component controller="AnkenController"
+    implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+    access="global">
+    <aura:attribute name="ankenlist" type="List<Anken__c>" />
+
+    <div class="container">
+        <h1 aligh="center">案件</h1>
+        <table>
+          <tr aligh="center">案件一覧</tr>
+          <tr>
+            <th>No</th>
+            <th>案件名</th>
+            <th>案件種別</th>
+            <th>案件開発種別</th>
+            <th>所在地（都県）</th>
+            <th>所在地（都県）</th>
+          </tr>
+        </table>
+    </div>
+</aura:component>
