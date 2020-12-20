@@ -11,20 +11,6 @@
             let newExpense = component.get("v.newExpense");
             console.log("Create expense: " + JSON.stringify(newExpense));
             helper.createExpense(component, newExpense);
-
-            // DB更新
-            var action = component.get("c.updExpense");
-            action.setParams(
-                {"expense":newExpense}
-            );
-            action.setCallback(this, function(response) {
-                    var state = response.getState();
-                    if (state === "SUCCESS") {
-                        var expensItems = response.getReturnValue();
-                        component.set("v.expenses", expensItems);
-                    }
-                });
-            $A.enqueueAction(action);    
         }
     },
     init: function(component, event, helper) {
@@ -32,8 +18,8 @@
 		action.setCallback(this, function(response) {
 				var state = response.getState();
 				if (state === "SUCCESS") {
-					var expensItems = response.getReturnValue();
-					component.set("v.expenses", expensItems);
+					var ankenItems = response.getReturnValue();
+					component.set("v.ankenlist", ankenItems);
 				}
 			});
 		$A.enqueueAction(action);

@@ -8,7 +8,7 @@
   Ver   Date         Author                               Modification
   1.0   12-20-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
 -->
-<aura:component implements="force:appHostable" controller="ExpensesController">
+<aura:component implements="force:appHostable">
         <aura:attribute name="expenses" type="Expense__c[]"/>
         <aura:attribute name="newExpense" type="Expense__c"
          default="{ 'sobjectType': 'Expense__c',
