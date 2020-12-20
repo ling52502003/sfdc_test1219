@@ -1,0 +1,28 @@
+<aura:component implements="force:appHostable">
+	    <lightning:layout class="slds-page-header">
+        <lightning:icon iconName="action:goal" />
+        <h1>案件 リスト</h1>
+    </lightning:layout>
+    <aura:attribute name="newItem" type="Anken__c" description=""
+                    default="{ 'sobjectType': 'Anken__c',
+                             'Name': 'テスト',
+                             'Price__c': 0,
+                             'AnkenSyubetu__c': '新規'}" 
+                    		required="true"/>
+    
+    <!-- 名前  -->
+    <lightning:input aura:id="itemform" label="Item Name"
+                     name="itemname"
+                     value="{!v.newItem.Name}"/>
+    <!-- 価格  -->
+    <lightning:input type="number" aura:id="itemform" label="Price"
+                     name="itemprice"
+                     value="{!v.newItem.Price__c}"
+                     formatter="currency"
+                     step="0.01"/>
+    <!--  登録ボタン -->
+    <lightning:button label="Create Item" 
+                      class="slds-m-top--medium"
+                      variant="brand"
+                      onclick="{!c.clickCreate}"/>
+</aura:component>

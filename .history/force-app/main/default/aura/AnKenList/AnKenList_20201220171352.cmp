@@ -9,7 +9,7 @@
   1.0   12-20-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
 -->
 <aura:component controller="AnkenController"
-  implements="force:appHostable"
+  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
   access="global">
   <!-- attribute -->
   <aura:attribute name="ankenlist" type="List" />
@@ -48,38 +48,39 @@
   ]"/>
   <!-- handler -->
   <aura:handler name="init" value="{!this}" action="{!c.init}" />
+<div>
     <!-- CREATE NEW EXPENSE -->
-    <div aria-labelledby="newankenform">
+    <div aria-labelledby="newexpenseform">
       <!-- BOXED AREA -->
       <fieldset class="slds-box slds-theme_default slds-container_small">
-      <legend id="newankenform" class="slds-text-heading_small slds-p-vertical_medium">
-        案件登録
+      <legend id="newexpenseform" class="slds-text-heading_small
+        slds-p-vertical_medium">
+        Add Expense
       </legend>
       <!-- CREATE NEW EXPENSE FORM -->
       <form class="slds-form_stacked">
-          <lightning:input aura:id="NameId" label="案件名"
-                           name="ankenName"
-                           value="{!v.anken.Name}"
+          <lightning:input aura:id="expenseform" label="Expense Name"
+                           name="expensename"
+                           value="{!v.newExpense.Name}"
                            required="true"/>
-           <lightning:combobox name="AnkenTypeName" label="案件種別" value="v.anken.Type__c" 
-                               placeholder="--選択--" options="{! v.AnkenTypeOptions }" />
-          <lightning:combobox name="AnkenSyubetuName" label="案件開発種別" value="v.anken.AnkenSyubetu__c" 
-              placeholder="--選択--" options="{! v.AnkenSyubetuOptions }" />
-          <lightning:combobox name="Address_AName" label="所在地（都県）" value="v.anken.Address_A__c" 
-                  placeholder="--選択--" options="{! v.Address_AOption }" onchange="{! c.handleChange4AddressA }"/>
-          <lightning:combobox name="Address_BName" label="所在地（市）" value="v.anken.Address_B__c" 
-              placeholder="--選択--" options="{! v.Address_BOption }" onchange="{! c.handleChange4AddressB }"/>
-          <lightning:input type="date" aura:id="CloseDateId" label="完了予定日"
-                           name="ankenCloseDate"
-                           value="{!v.anken.CloseDate__c}"/>
-         <lightning:input type="number" aura:id="PriceId" label="金額"
-                            name="ankenPrice"
-                            min="0.1"
-                            formatter="currency"
-                            step="0.01"
-                            value="{!v.anken.Price__c}"
-                            messageWhenRangeUnderflow="Enter an amount that's at least $0.10."/>
-         <lightning:button label="新規"
+          <lightning:input type="number" aura:id="expenseform" label="Amount"
+                           name="expenseamount"
+                           min="0.1"
+                           formatter="currency"
+                           step="0.01"
+                           value="{!v.newExpense.Amount__c}"
+                           messageWhenRangeUnderflow="Enter an amount that's at least $0.10."/>
+          <lightning:input aura:id="expenseform" label="Client"
+                           name="expenseclient"
+                           value="{!v.newExpense.Client__c}"
+                           placeholder="ABC Co."/>
+          <lightning:input type="date" aura:id="expenseform" label="Expense Date"
+                           name="expensedate"
+                           value="{!v.newExpense.Date__c}"/>
+          <lightning:input type="checkbox" aura:id="expenseform" label="Reimbursed?"
+                           name="expreimbursed"
+                           checked="{!v.newExpense.Reimbursed__c}"/>
+          <lightning:button label="Create Expense"
                             class="slds-m-top_medium"
                             variant="brand"
                             onclick="{!c.clickCreate}"/>
@@ -87,13 +88,13 @@
       <!-- / CREATE NEW EXPENSE FORM -->
     </fieldset>
     <!-- / BOXED AREA -->
+  </div>
   <!-- / CREATE NEW EXPENSE -->
-
 </div>
 
     <div>
     <table>
-      <tr aligh="center">案件一覧</tr>
+      <tr aligh="center"><td colspan="7">案件一覧</td></tr>
       <tr>
         <th>No</th>
         <th>案件名</th>

@@ -1,0 +1,27 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:attribute name="fields"
+                    type="String[]"
+                    default="[
+                               'Name',
+                                'Type__c',
+                                'AnkenKanriID__c',
+                                'AnkenSyubetu__c',
+                                'Address_A__c',
+                                'Address_B__c',
+                                'CloseDate__c',
+                                'status__c',
+                                'PostCode__c',
+                                'StartDate__c',
+                                'ItakuComp__c',
+                                'KaishiActDate__c',
+                                'KanryoActDate__c',
+                                'Price__c'
+                             ]"/>
+ 
+    <!-- Displays toast notifications -->
+    <lightning:notificationsLibrary aura:id="notifLib" />
+    <lightning:recordForm
+        objectApiName="Anken__c"
+        fields="{!v.fields}"
+        onerror="{!c.handleError}"/>
+</aura:component>
