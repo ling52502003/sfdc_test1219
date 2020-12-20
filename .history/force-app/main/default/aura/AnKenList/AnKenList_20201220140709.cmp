@@ -1,0 +1,88 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 12-20-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   12-20-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<aura:component controller="AnkenController"
+  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+  access="global">
+  <!-- attribute -->
+  <aura:attribute name="ankenlist" type="List" />
+  <aura:attribute name="anken" type="Anken__c" />
+  <!-- handler -->
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <div class="container">
+    <h1 aligh="center">案件</h1>
+<div>
+    <!-- CREATE NEW EXPENSE -->
+    <div aria-labelledby="newexpenseform">
+      <!-- BOXED AREA -->
+      <fieldset class="slds-box slds-theme_default slds-container_small">
+      <legend id="newexpenseform" class="slds-text-heading_small slds-p-vertical_medium">
+        Add Expense
+      </legend>
+      <!-- CREATE NEW EXPENSE FORM -->
+      <form class="slds-form_stacked">
+          <lightning:input aura:id="NameId" label="案件名"
+                           name="ankenName"
+                           value="{!v.anken.Name}"
+                           required="true"/>
+          <lightning:input type="date" aura:id="CloseDateId" label="完了予定日"
+                           name="ankenCloseDate"
+                           value="{!v.anken.CloseDate__c}"/>
+          <lightning:input type="checkbox" aura:id="expenseform" label="Reimbursed?"
+                           name="expreimbursed"
+                           checked="{!v.newExpense.Reimbursed__c}"/>
+          <lightning:button label="Create Expense"
+                            class="slds-m-top_medium"
+                            variant="brand"
+                            onclick="{!c.clickCreate}"/>
+         <lightning:input type="number" aura:id="PriceId" label="金額"
+                            name="ankenPrice"
+                            min="0.1"
+                            formatter="currency"
+                            step="0.01"
+                            value="{!v.anken.Price__c}"
+                            messageWhenRangeUnderflow="Enter an amount that's at least $0.10."/>
+ 
+      </form>
+      <!-- / CREATE NEW EXPENSE FORM -->
+    </fieldset>
+    <!-- / BOXED AREA -->
+  </div>
+  <!-- / CREATE NEW EXPENSE -->
+
+
+
+</div>
+
+    <div>
+    <table>
+      <tr aligh="center">案件一覧</tr>
+      <tr>
+        <th>No</th>
+        <th>案件名</th>
+        <th>案件種別</th>
+        <th>案件開発種別</th>
+        <th>所在地（都県）</th>
+        <th>所在地（市））</th>
+      </tr>
+      <aura:iteration items="{!v.ankenlist}" var="ankenItem" indexVar="indx">
+        <tr>
+          <td>{!indx}</td>
+          <td>{!ankenItem.Name}</td>
+          <td>{!ankenItem.Type__c}</td>
+          <td>{!ankenItem.AnkenSyubetu__c}</td>
+          <td>{!ankenItem.Address_A__c}</td>
+          <td>{!ankenItem.Address_B__c}</td>
+        </tr>
+      </aura:iteration>
+    </table>
+  </div>
+  </div>
+</aura:component>

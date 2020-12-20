@@ -14,46 +14,17 @@
   <!-- attribute -->
   <aura:attribute name="ankenlist" type="List" />
   <aura:attribute name="anken" type="Anken__c" />
-  <aura:attribute name="AnkenTypeOptions" type="List" default="[
-      {'label': '不動産案件', 'value': '不動産案件'},
-      {'label': 'IT開発案件', 'value': 'IT開発案件'}
-  ]"/>
-  <aura:attribute name="AnkenSyubetuOptions" type="List" default="[
-      {'label': '新規', 'value': '新規'},
-      {'label': '修正', 'value': '修正'},
-      {'label': '保守', 'value': '保守'}
-  ]"/>
-
-  <aura:attribute name="Address_AOption" type="List" default="[
-      {'label': '東京都', 'value': '東京都'},
-      {'label': '神奈川県', 'value': '埼玉県'},
-      {'label': '千葉県', 'value': '千葉県'},
-      {'label': '茨城県', 'value': '茨城県'},
-      {'label': '栃木県', 'value': '栃木県'},
-      {'label': '群馬県', 'value': '群馬県'}
-  ]"/>
-
-  <aura:attribute name="Address_BOption" type="List" default="[
-      {'label': '豊島区', 'value': '豊島区'},
-      {'label': '中野区', 'value': '中野区'},
-      {'label': '練馬区', 'value': '練馬区'},
-      {'label': '文京区', 'value': '文京区'},
-      {'label': '港区', 'value': '港区'},
-      {'label': '目黒区', 'value': '目黒区'},
-      {'label': '横浜市', 'value': '横浜市'},
-      {'label': '川崎市', 'value': '川崎市'},
-      {'label': '千葉市', 'value': '千葉市'},
-      {'label': '船橋市', 'value': '船橋市'},
-      {'label': '川口市', 'value': '川口市'}
-  ]"/>
   <!-- handler -->
   <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <div class="container">
+    <h1 aligh="center">案件</h1>
+<div>
     <!-- CREATE NEW EXPENSE -->
-    <div aria-labelledby="newankenform">
+    <div aria-labelledby="newexpenseform">
       <!-- BOXED AREA -->
       <fieldset class="slds-box slds-theme_default slds-container_small">
-      <legend id="newankenform" class="slds-text-heading_small slds-p-vertical_medium">
-        案件登録
+      <legend id="newexpenseform" class="slds-text-heading_small slds-p-vertical_medium">
+        Add Expense
       </legend>
       <!-- CREATE NEW EXPENSE FORM -->
       <form class="slds-form_stacked">
@@ -61,17 +32,12 @@
                            name="ankenName"
                            value="{!v.anken.Name}"
                            required="true"/>
-           <lightning:combobox name="AnkenTypeName" label="案件種別" value="v.anken.Type__c" 
-                               placeholder="--選択--" options="{! v.AnkenTypeOptions }" />
-          <lightning:combobox name="AnkenSyubetuName" label="案件開発種別" value="v.anken.AnkenSyubetu__c" 
-              placeholder="--選択--" options="{! v.AnkenSyubetuOptions }" />
-          <lightning:combobox name="Address_AName" label="所在地（都県）" value="v.anken.Address_A__c" 
-                  placeholder="--選択--" options="{! v.Address_AOption }" onchange="{! c.handleChange4AddressA }"/>
-          <lightning:combobox name="Address_BName" label="所在地（市）" value="v.anken.Address_B__c" 
-              placeholder="--選択--" options="{! v.Address_BOption }" onchange="{! c.handleChange4AddressB }"/>
           <lightning:input type="date" aura:id="CloseDateId" label="完了予定日"
                            name="ankenCloseDate"
                            value="{!v.anken.CloseDate__c}"/>
+          <lightning:input type="checkbox" aura:id="expenseform" label="Reimbursed?"
+                           name="expreimbursed"
+                           checked="{!v.newExpense.Reimbursed__c}"/>
          <lightning:input type="number" aura:id="PriceId" label="金額"
                             name="ankenPrice"
                             min="0.1"
@@ -83,11 +49,15 @@
                             class="slds-m-top_medium"
                             variant="brand"
                             onclick="{!c.clickCreate}"/>
+
       </form>
       <!-- / CREATE NEW EXPENSE FORM -->
     </fieldset>
     <!-- / BOXED AREA -->
+  </div>
   <!-- / CREATE NEW EXPENSE -->
+
+
 
 </div>
 
@@ -101,8 +71,6 @@
         <th>案件開発種別</th>
         <th>所在地（都県）</th>
         <th>所在地（市））</th>
-        <th>完了予定日</th>
-        <th>金額</th>
       </tr>
       <aura:iteration items="{!v.ankenlist}" var="ankenItem" indexVar="indx">
         <tr>
@@ -112,10 +80,9 @@
           <td>{!ankenItem.AnkenSyubetu__c}</td>
           <td>{!ankenItem.Address_A__c}</td>
           <td>{!ankenItem.Address_B__c}</td>
-          <td>{!ankenItem.CloseDate__c}</td>
-          <td>{!ankenItem.Price__c}</td>
         </tr>
       </aura:iteration>
     </table>
+  </div>
   </div>
 </aura:component>

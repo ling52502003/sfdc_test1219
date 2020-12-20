@@ -1,0 +1,54 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 12-20-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   12-20-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<aura:component controller="AnkenController"
+  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+  access="global">
+  <!-- attribute -->
+  <aura:attribute name="ankenlist" type="List" />
+  <aura:attribute name="anken" type="Anken__c" />
+  <!-- handler -->
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <div class="container">
+    <h1 aligh="center">案件</h1>
+<div>
+  <table>
+    <tr aligh="center">
+      <td colspan="2">案件登録</td>
+    </tr>
+  </table>
+
+</div>
+
+    <div>
+    <table>
+      <tr aligh="center">案件一覧</tr>
+      <tr>
+        <th>No</th>
+        <th>案件名</th>
+        <th>案件種別</th>
+        <th>案件開発種別</th>
+        <th>所在地（都県）</th>
+        <th>所在地（市））</th>
+      </tr>
+      <aura:iteration items="{!v.ankenlist}" var="ankenItem" indexVar="indx">
+        <tr>
+          <td>{!indx}</td>
+          <td>{!ankenItem.Name}</td>
+          <td>{!ankenItem.Type__c}</td>
+          <td>{!ankenItem.AnkenSyubetu__c}</td>
+          <td>{!ankenItem.Address_A__c}</td>
+          <td>{!ankenItem.Address_B__c}</td>
+        </tr>
+      </aura:iteration>
+    </table>
+  </div>
+  </div>
+</aura:component>
